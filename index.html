@@ -1,12 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger Restaurant</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Karta burgeru</title>
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <script src="data.js" ></script>
-    <script src="script.js" ></script>
-</body> 
+	<main class="container">
+		<article class="product-card">
+			<header class="card-header">
+				<h1 id="burger-name">Název burgeru</h1>
+				<div class="base-price">Základ: <span id="base-price">0 Kč</span></div>
+			</header>
+
+			<section class="quantity">
+				<label for="qty">Množství</label>
+				<div class="qty-controls">
+					<button id="qty-decr" type="button" aria-label="Snížit">−</button>
+					<input id="qty" type="number" min="1" value="1" />
+					<button id="qty-incr" type="button" aria-label="Zvýšit">+</button>
+				</div>
+			</section>
+
+			<section class="ingredients">
+				<h2>Ingredience</h2>
+				<form id="ingredients-form">
+					<!-- checkboxy budou vkládány JS -->
+				</form>
+			</section>
+
+			<section class="summary">
+				<h2>Souhrn</h2>
+				<div class="summary-row">
+					<span>Výsledná cena:</span>
+					<span id="total-price" class="total">0 Kč</span>
+				</div>
+			</section>
+		</article>
+	</main>
+
+	<script>
+		// Jednoduchý objekt burgeru (název, základní cena, ingredience)
+		const burger = {
+			name: "Classic Burger",
+			basePrice: 99, // Kč
+			ingredients: {
+				slanina: { label: "Slanina", price: 25 },
+				syr: { label: "Sýr", price: 20 },
+				hranolky: { label: "Hranolky", price: 35 },
+				zw: { label: "Zelenina", price: 10 }
+			}
+		};
+
+		// Helper pro formát ceny
+		const fmt = (v) => v.toLocaleString('cs-CZ') + ' Kč';
+
+		// DOM elementy
+		const nameEl = document.getElementById('burger-name');
+		const basePriceEl = document.getElementById('base-price');
+		const ingredientsForm = document.getElementById('ingredients-form');
+		const qtyInput = document.getElementById('qty');
+		const qtyIncr = document.getElementById('qty-incr');
+		const qtyDecr = document.getElementById('qty-decr');
+		const totalPriceEl = document.getElementById('total-price');
+
+		// Inicializace UI
+		nameEl.textContent = burger.name;
+		basePriceEl.textContent = fmt(burger.basePrice);
+
+		// Vygenerovat checkboxy (value = klíč z objektu)
+		for (const key of Object.keys(burger.ingredients)) {
+			const ing = burger.ingredients[key];
+			const id = 'ing-' + key;
+			const wrapper = document.createElement('label');
+			wrapper.className = 'ing-item';
+			wrapper.innerHTML = `
+				<input type="checkbox" name="ingredient" value="${key}" id="${id}" />
+				<span class="ing-label">${ing.label}</span>
+				<span class="ing-price">+ ${fmt(ing.price)}</span>
+			`;
+			ingredientsForm.appendChild(wrapper);
+		}
+
+		// Výpočet celkové ceny
+		function calculateTotal() {
+			let qty = parseInt(qtyInput.value, 10) || 1;
+			if (qty < 1) { qty = 1; qtyInput.value = 1; }
+			let totalPerUnit = burger.basePrice;
+			const checked = ingredientsForm.querySelectorAll('input[type="checkbox"]:checked');
+			checked.forEach(cb => {
+				const key = cb.value;
+				const ing = burger.ingredients[key];
+				if (ing) totalPerUnit += ing.price;
+			});
+			const total = totalPerUnit * qty;
+			totalPriceEl.textContent = fmt(total);
+		}
+
+		// Eventy
+		ingredientsForm.addEventListener('change', calculateTotal);
+		qtyInput.addEventListener('input', calculateTotal);
+		qtyIncr.addEventListener('click', () => { qtyInput.value = Math.max(1, parseInt(qtyInput.value || 1) + 1); calculateTotal(); });
+		qtyDecr.addEventListener('click', () => { qtyInput.value = Math.max(1, parseInt(qtyInput.value || 1) - 1); calculateTotal(); });
+
+		// Počáteční výpočet
+		calculateTotal();
+	</script>
+</body>
 </html>
