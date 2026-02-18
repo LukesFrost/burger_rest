@@ -1,4 +1,5 @@
-const { createElement } = require("react");
+//Vyber burgeru
+let headline = document.getElementById("burger-name");
 
 let select = document.getElementById("burger-select");
 for (let typ in nabidkaBurgeru) {
@@ -10,6 +11,8 @@ for (let typ in nabidkaBurgeru) {
 
     console.log(nabidkaBurgeru[typ].nazev)
 }
+
+// Checkboxy pro xtra ingredience
 
 const checkbox_form = document.getElementById("ingredients-form");
 for (let typ in extraIngredience) {
@@ -28,3 +31,21 @@ for (let typ in extraIngredience) {
 
     checkbox_form.appendChild(label);
 }
+
+select.addEventListener("change", function () {
+    const key = select.value;
+    const basePriceEl = document.getElementById("base-price");
+        if (!key) {
+            headline.textContent = "Vyberte produkt";
+            basePriceEl.textContent = "0 Kč";
+            return;
+        }
+        const burger = nabidkaBurgeru[key];
+        if (burger && burger.nazev) {
+            headline.textContent = burger.nazev;
+        }
+        if (burger && burger.cena !== undefined && basePriceEl) {
+            basePriceEl.textContent = `${burger.cena} Kč`;
+        }
+    }
+);

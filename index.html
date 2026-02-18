@@ -8,23 +8,24 @@
 </head>
 <body>
 	<main class="container">
-		<article class="product-card">
-			<header class="card-header">
-				<h1 id="burger-name">Název burgeru</h1>
+		<article class="produkt">
+			<header class="hlavicka">
+				<h1 id="burger-name">Vyberte produkt</h1>
 				<select name="burger" id="burger-select">
+					<option value="">--Výběr--</option>
 				</select>
-				<div class="base-price">
-					<p>Základ:</p>
-					<p id="base-price">0 Kč</p>
+				<div class="dva-okraje">
+					<p id="z-cena-text">Základ:</p>
+					<p id="z-cena-castka">0 Kč</p>
 				</div>
 			</header>
 
-			<section class="quantity">
-				<label for="qty">Množství</label>
-				<div class="qty-controls">
-					<button id="qty-decr" type="button" aria-label="Snížit">−</button>
-					<input id="qty" type="number" min="1" value="1" />
-					<button id="qty-incr" type="button" aria-label="Zvýšit">+</button>
+			<section class="dva-okraje">
+				<label for="mnozstvi">Množství</label>
+				<div class="mnz-controls">
+					<button class="design small-button" id="mnz-decr" type="button" aria-label="Snížit">−</button>
+					<input class="design" id="mnozstvi" type="number" min="1" value="1" />
+					<button class="design small-button" id="mnz-incr" type="button" aria-label="Zvýšit">+</button>
 				</div>
 			</section>
 
@@ -39,7 +40,7 @@
 				<h2>Souhrn</h2>
 				<div class="summary-row">
 					<span>Výsledná cena:</span>
-					<span id="total-price" class="total">0 Kč</span>
+					<span id="total-price" class="cenovka">0 Kč</span>
 				</div>
 			</section>
 		</article>
