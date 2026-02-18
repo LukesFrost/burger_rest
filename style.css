@@ -1,9 +1,10 @@
 * {
-	/*border: solid 1px black;*/
+	border: 1px solid black;
 	padding: 0px;
 	margin: 0px;
 	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
 
 body {
 	display: flex;
@@ -12,10 +13,6 @@ body {
 	background-color: rgb(87, 87, 87);
 	font-size: larger;
 	min-height: 100vh;
-}
-
-#z-cena-text {	
-	
 }
 #z-cena-castka {
 	font-weight: 600;
@@ -103,4 +100,18 @@ button:hover {
 
 .small-button {
 	width: 20px;
+}
+
+hr {
+	border: none;
+	height: 2px;
+	background-color: rgb(227, 224, 13);
+	margin-top: 20px;
+	width: 400px;
+}
+
+.souhrn {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin: 15px;
 }
