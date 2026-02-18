@@ -11,7 +11,12 @@
 		<article class="product-card">
 			<header class="card-header">
 				<h1 id="burger-name">Název burgeru</h1>
-				<div class="base-price">Základ: <span id="base-price">0 Kč</span></div>
+				<select name="burger" id="burger-select">
+				</select>
+				<div class="base-price">
+					<p>Základ:</p>
+					<p id="base-price">0 Kč</p>
+				</div>
 			</header>
 
 			<section class="quantity">
@@ -23,7 +28,7 @@
 				</div>
 			</section>
 
-			<section class="ingredients">
+			<section class="ingredience">
 				<h2>Extra ingredience:</h2>
 				<form id="ingredients-form">
                     
@@ -39,7 +44,7 @@
 			</section>
 		</article>
 	</main>
-
+	
 	<script src="data.js"></script>
 	<script src="script.js"></script>
 </body>

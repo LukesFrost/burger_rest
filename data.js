@@ -10,7 +10,7 @@ const nabidkaBurgeru = {
         cena: 185, },
     "veggie": {
         nazev: "Veggie Burger",
-        cena: 155, },         
+        cena: 155, }     
 }
 const extraIngredience = {
     "syr": {
