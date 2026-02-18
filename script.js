@@ -1,5 +1,4 @@
 //Vyber burgeru
-console.log("hh")
 
 let headline = document.getElementById("burger-name");
 
@@ -32,6 +31,14 @@ select.addEventListener("change", function () {
     }
 );
 
+const burger_img = document.getElementById("burger-image");
+
+select.addEventListener( "change", function () {
+    
+}
+
+)
+
 //pocitani mnozstvi
 
 const mnozstviInp = document.getElementById("mnozstvi");
@@ -56,8 +63,8 @@ plus.addEventListener("click", function() {
 
 // Checkboxy pro xtra ingredience
 
-const checkbox_form = document.getElementById("ingredients-form");
-for (let typ in extraIngredience) {
+    const checkbox_form = document.getElementById("ingredients-form");
+    for (let typ in extraIngredience) {
     //console.log(extraIngredience[typ].nazev);
 
     let ing = extraIngredience[typ];
@@ -73,6 +80,7 @@ for (let typ in extraIngredience) {
 
     checkbox_form.appendChild(label);
 }
+
 
 //vysledna cena
 const burgery = nabidkaBurgeru;
