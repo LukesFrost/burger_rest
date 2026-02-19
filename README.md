@@ -54,16 +54,4 @@ burger_rest/
 - CSS3
 - Vanilla JavaScript (bez externích knihoven)
 
-## Vývoj
-
-Všechny změny jsou verzovány v gitu. Pro push změn:
-
-```bash
-git add .
-git commit -m "Popis změny"
-git push origin master
-```
-
----
-
 Vytvořeno pro Burger Rest objednávkový systém
