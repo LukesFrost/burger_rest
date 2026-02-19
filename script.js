@@ -9,9 +9,22 @@ for (let typ in nabidkaBurgeru) {
     option.value = typ;
     option.textContent = `${burgers.nazev} (${burgers.cena} Kč)`;
     select.appendChild(option);
-
     //console.log(nabidkaBurgeru[typ].nazev)
 }
+
+select.addEventListener("change", function() {
+    const burgerObrazek = document.getElementById("burger-obraz");
+    const key = select.value;
+    
+    if (key) {
+        const burger = nabidkaBurgeru[key];
+        if (burger && burger.img) {
+            burgerObrazek.src = burger.img;
+        }
+    } else {
+        burgerObrazek.src = "imgs/classic_burger.jpg";
+    }
+});
 
 select.addEventListener("change", function () {
     const key = select.value;
@@ -19,6 +32,7 @@ select.addEventListener("change", function () {
         if (!key) {
             headline.textContent = "Vyberte produkt";
             basePriceEl.textContent = "0 Kč";
+            vypocitatCenu();
             return;
         }
         const burger = nabidkaBurgeru[key];
@@ -28,16 +42,11 @@ select.addEventListener("change", function () {
         if (burger && burger.cena !== undefined && basePriceEl) {
             basePriceEl.textContent = `${burger.cena} Kč`;
         }
+        vypocitatCenu();
     }
 );
 
-const burger_img = document.getElementById("burger-image");
-
-select.addEventListener( "change", function () {
-    
-}
-
-)
+const burger_img = document.getElementById("burger-obraz");
 
 //pocitani mnozstvi
 
@@ -50,6 +59,7 @@ minus.addEventListener("click", function() {
         if (current > 1) {
             mnozstviInp.value = current - 1;
         }
+        vypocitatCenu();
     }
 
 );
@@ -57,6 +67,7 @@ minus.addEventListener("click", function() {
 plus.addEventListener("click", function() {
         let current = parseInt(mnozstviInp.value);
         mnozstviInp.value = current + 1;
+        vypocitatCenu();
     }
 
 );
@@ -74,6 +85,7 @@ plus.addEventListener("click", function() {
     inp.type = "checkbox";
     inp.name = typ;
     inp.value = ing.priplatek;
+    inp.addEventListener("change", vypocitatCenu);
 
     label.appendChild(inp);
     label.appendChild(document.createTextNode(` ${ing.nazev} (+${ing.priplatek} Kč)`))
@@ -83,6 +95,25 @@ plus.addEventListener("click", function() {
 
 
 //vysledna cena
-const burgery = nabidkaBurgeru;
+function vypocitatCenu() {
+    let cena = 0;
+    const vybranyBurger = nabidkaBurgeru[select.value];
+    
+    if (vybranyBurger) {
+        cena += vybranyBurger.cena;
+    }
 
-let pocetKusu = parseInt(mnozstviInp.value);
+    const zaskrtnuteIngredience = checkbox_form.querySelectorAll("input:checked");
+    zaskrtnuteIngredience.forEach((ing) => {
+        cena += parseFloat(ing.value);
+    });
+
+    const mnozstvi = parseInt(mnozstviInp.value);
+    const celkovaCena = cena * mnozstvi;
+
+    const vystup = document.getElementById("celkova-cena");
+    if (vystup) {
+        vystup.textContent = celkovaCena.toFixed(2) + " Kč";
+    }
+}
+console.log(nabidkaBurgeru.classic.img)

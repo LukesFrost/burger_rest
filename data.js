@@ -1,25 +1,29 @@
 const nabidkaBurgeru = {
     "classic": {
         nazev: "Classic Beef Burger",
-        cena: 165 },
+        cena: 164.90,
+        img: "imgs/classic_burger.jpg"},
     "cheese": {
         nazev: "Cheese Burger",
-        cena: 175},
+        cena: 174.90,
+        img: "imgs/cheese_burger.jpg"},
     "bacon": {
         nazev: "Bacon Burger",
-        cena: 185},
+        cena: 184.90,
+        img: "imgs/bacon_burger.jpg"},
     "veggie": {
         nazev: "Veggie Burger",
-        cena: 155 }     
+        cena: 154.90,
+        img: "imgs/veggie_burger.jpg" }     
 }
 const extraIngredience = {
-    "syr": {
+    "syr": {       
         nazev: "Sýr",
-        priplatek: 15, },
+        priplatek: 14.90},
     "slanina": {
         nazev: "Slanina",
-        priplatek: 15 },
+        priplatek: 14.90 },
     "rajce": {
         nazev: "Rajče",
-        priplatek: 10 },                
+        priplatek: 9.90 },                
 }
